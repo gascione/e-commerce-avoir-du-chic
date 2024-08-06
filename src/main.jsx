@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import { ItemsProvider } from "./context/ItemsProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,8 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ItemsProvider>
+      <RouterProvider router={router} />
+    </ItemsProvider>
   </React.StrictMode>
 );
