@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#nav a.active {
+  color: #e4adff;
+}
+#nav a.active.logo {
+  color: #fff;
+}

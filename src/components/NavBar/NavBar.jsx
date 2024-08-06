@@ -7,10 +7,15 @@ const NavBar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-950 mb-3 text-slate-50">
+      <nav
+        id="nav"
+        className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-950 mb-3 text-slate-50"
+      >
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
           <div className="flex justify-between w-full lg:w-auto">
-            <NavLink to="/">Blackmarket</NavLink>
+            <NavLink to="/" className="logo">
+              Blackmarket
+            </NavLink>
             <button
               className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-transparent rounded bg-transparent lg:hidden outline-none focus:outline-none"
               type="button"
