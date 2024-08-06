@@ -4,8 +4,11 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root/Root";
 import RouteError from "./components/RouteError/RouteError.jsx";
-import Home from "./pages/Home.jsx";
+import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +23,18 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
       },
     ],
   },

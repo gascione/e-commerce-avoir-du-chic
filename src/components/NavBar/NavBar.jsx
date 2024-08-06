@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faX, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -9,7 +10,7 @@ const NavBar = () => {
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-950 mb-3 text-slate-50">
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
           <div className="flex justify-between w-full lg:w-auto">
-            <div>Blackmarket</div>
+            <NavLink to="/">Blackmarket</NavLink>
             <button
               className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-transparent rounded bg-transparent lg:hidden outline-none focus:outline-none"
               type="button"
@@ -36,16 +37,25 @@ const NavBar = () => {
                 <FontAwesomeIcon icon={faX} style={{ color: "#f8fafc" }} />
               </button>
               <li className="nav-item px-3 py-2 text-white text-center">
-                Home
+                <NavLink to="/">Home</NavLink>
               </li>
               <li className="nav-item px-3 py-2 text-white text-center">
-                About
+                <NavLink to="about">About</NavLink>
               </li>
               <li className="nav-item px-3 py-2 text-white text-center">
-                Sign In
+                <NavLink to="signup">Sign up</NavLink>
               </li>
               <li className="nav-item px-3 py-2 text-white text-center">
-                Sign up
+                <NavLink to="login">Log in</NavLink>
+              </li>{" "}
+              <li>
+                <NavLink to="cart">
+                  {" "}
+                  <FontAwesomeIcon
+                    icon={faCartShopping}
+                    style={{ color: "#f8fafc" }}
+                  />
+                </NavLink>
               </li>
             </ul>
           </div>
