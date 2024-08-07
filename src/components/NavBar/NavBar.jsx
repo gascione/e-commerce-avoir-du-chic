@@ -53,13 +53,16 @@ const NavBar = () => {
               <li className="nav-item px-3 py-2 text-white text-center">
                 <NavLink to="login">Log in</NavLink>
               </li>{" "}
-              <li>
-                <NavLink to="cart">
+              <li className="nav-item px-3 py-2 text-white text-center">
+                <NavLink to="cart" className="relative inline-block">
                   {" "}
                   <FontAwesomeIcon
                     icon={faCartShopping}
                     style={{ color: "#f8fafc" }}
                   />
+                  <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-sm w-5 h-5 rounded-full flex items-center justify-center">
+                    0
+                  </span>
                 </NavLink>
               </li>
             </ul>
