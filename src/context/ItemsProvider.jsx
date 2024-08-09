@@ -11,7 +11,6 @@ export function ItemsProvider({ children }) {
       .then((response) => response.json())
       .then((data) => {
         setItems(data);
-        console.log(data);
         setIsLoading(false);
       })
       .catch((error) => console.log(error));
