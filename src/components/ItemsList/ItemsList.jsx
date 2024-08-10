@@ -13,7 +13,7 @@ const ItemsList = () => {
   return (
     <>
       <h1>Items List</h1>
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5">
+      <div className="flex flex-wrap justify-center gap-5">
         {items.map((item, key) => (
           <Item
             key={key}
@@ -21,6 +21,7 @@ const ItemsList = () => {
             img={item.image}
             price={item.price}
             id={item.id}
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
           />
         ))}
       </div>

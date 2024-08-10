@@ -17,45 +17,57 @@ const Item = ({ title, img, price, id }) => {
   const handleAddToCart = () => {
     console.log(quantity + " Item(s) added to cart");
   };
+
   return (
-    <div className="bg-white p-5 rounded-xl shadow-sm">
-      {/* //agregar un link para que se vea el producto más grande */}
-      <Link to={`/products/${id}`}>
-        <img
-          className="w-full h-80 object-cover object-top drop-shadow-sm"
-          src={img}
-          alt={title}
-        />
-      </Link>
-      <div className="">
-        <h3 className="text-2xl py-3 text-center font-bold">{title}</h3>
-        <h4 className="text-2xl font-normal text-center">${price}</h4>
-        <div className="flex justify-between items-center">
-          <div className="flex gap-2 justify-center">
+    <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+      <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
+        <Link to={`/products/${id}`}>
+          <img className="object-cover" src={img} alt={title} />
+        </Link>
+      </div>
+      <div className="mt-4 px-5 pb-5">
+        <Link to={`/products/${id}`}>
+          <h5 className="text-xl tracking-tight text-slate-900 line-clamp-2 h-14">
+            {title}
+          </h5>
+        </Link>
+        <div className="mt-2 mb-5 flex items-center justify-between">
+          <h4 className="text-lg font-bold text-gray-900">${price}</h4>
+          <div className="flex gap-2">
             <button
-              className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center"
+              className={`flex items-center justify-center rounded-l-md px-4 transition ${
+                quantity === 1
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-gray-200 hover:bg-black hover:text-white"
+              }`}
               onClick={handleMinusQuantity}
+              disabled={quantity === 1}
             >
               -
             </button>
-            <span className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center">
+            <span className="h-8 w-8 font-medium text-lg rounded-lg flex justify-center items-center">
               {quantity}
             </span>
             <button
-              className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center"
+              className="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
               onClick={handlePlusQuantity}
             >
               +
             </button>
           </div>
-          <button
-            className="bg-gray-300 p-2 rounded-md text-sm hover:bg-gray-400 flex gap-2 items-center"
-            onClick={handleAddToCart}
-          >
-            <FontAwesomeIcon icon={faCartShopping} style={{ color: "#000" }} />
-            Add to Cart
-          </button>
         </div>
+
+        <button
+          className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 w-full"
+          onClick={handleAddToCart}
+        >
+          Add to Cart
+          <FontAwesomeIcon
+            icon={faCartShopping}
+            style={{ color: "#fff" }}
+            className="ml-2"
+          />
+        </button>
       </div>
     </div>
   );
