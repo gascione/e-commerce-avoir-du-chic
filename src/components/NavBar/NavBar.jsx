@@ -9,7 +9,7 @@ const NavBar = () => {
     <>
       <nav
         id="nav"
-        className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-950 mb-3 text-slate-50"
+        className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-950 text-slate-50"
       >
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
           <div className="flex justify-between w-full lg:w-auto">

@@ -12,7 +12,6 @@ const ItemsList = () => {
 
   return (
     <>
-      <h1>Items List</h1>
       <div className="flex flex-wrap justify-center gap-5">
         {items.map((item, key) => (
           <Item

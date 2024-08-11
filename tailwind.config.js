@@ -2,7 +2,10 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        home: "url('public/bgImage.jpg')",
+      },
+    },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
 };
