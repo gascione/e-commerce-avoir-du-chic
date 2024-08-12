@@ -2,22 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import QuantityCounter from "../QuantityCounter";
+import useQuantity from "../../hooks/useQuantity";
 
 const Item = ({ title, img, price, id }) => {
-  const [quantity, setQuantity] = useState(1);
-
-  const handleMinusQuantity = () => {
-    setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
-  };
-
-  const handlePlusQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const handleAddToCart = () => {
-    console.log(quantity + " Item(s) added to cart");
-  };
-
+  const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
+    useQuantity();
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
       <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
@@ -33,28 +23,11 @@ const Item = ({ title, img, price, id }) => {
         </Link>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <h4 className="text-lg font-bold text-gray-900">${price}</h4>
-          <div className="flex gap-2">
-            <button
-              className={`flex items-center justify-center rounded-l-md px-4 transition ${
-                quantity === 1
-                  ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-gray-200 hover:bg-black hover:text-white"
-              }`}
-              onClick={handleMinusQuantity}
-              disabled={quantity === 1}
-            >
-              -
-            </button>
-            <span className="h-8 w-8 font-medium text-lg rounded-lg flex justify-center items-center">
-              {quantity}
-            </span>
-            <button
-              className="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
-              onClick={handlePlusQuantity}
-            >
-              +
-            </button>
-          </div>
+          <QuantityCounter
+            quantity={quantity}
+            handleMinusQuantity={handleMinusQuantity}
+            handlePlusQuantity={handlePlusQuantity}
+          />
         </div>
 
         <button
