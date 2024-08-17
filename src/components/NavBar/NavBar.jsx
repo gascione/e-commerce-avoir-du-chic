@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 
-const NavBar = () => {
+function NavBar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <>
@@ -71,6 +71,6 @@ const NavBar = () => {
       </nav>
     </>
   );
-};
+}
 
 export default NavBar;
