@@ -7,8 +7,8 @@ import RouteError from "./components/RouteError/RouteError.jsx";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import About from "./pages/About";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import Login from "./components/LogIn";
+import SignUp from "./components/SignUp";
 import { ItemsProvider } from "./context/ItemsProvider.jsx";
 import Details from "./pages/Details.jsx";
 
