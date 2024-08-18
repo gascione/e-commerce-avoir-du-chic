@@ -11,6 +11,7 @@ import Login from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import { ItemsProvider } from "./context/ItemsProvider.jsx";
 import Details from "./pages/Details.jsx";
+import { UserSessionProvider } from "./context/UserSessionProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ItemsProvider>
-      <RouterProvider router={router} />
+      <UserSessionProvider>
+        <RouterProvider router={router} />
+      </UserSessionProvider>
     </ItemsProvider>
   </React.StrictMode>
 );

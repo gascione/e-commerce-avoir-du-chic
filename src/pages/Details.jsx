@@ -20,14 +20,14 @@ const Details = () => {
     <div className="flex flex-wrap items-start justify-center mt-8 space-y-4 md:space-y-0 md:space-x-4">
       <div>
         <img
-          src={item.image}
+          src={item.pictures[0]}
           alt={item.title}
           className="object-contain w-80 h-80"
         />
       </div>
       <div className="p-4 w-full md:w-1/2 lg:w-1/3 space-y-2">
         <h1 className="text-4xl font-medium">{item.title}</h1>
-        <h2 className="text-3xl font-light">${item.price}</h2>
+        <h2 className="text-3xl font-light">{item.unit_price}</h2>
         <p className="text-slate-600">{item.description}</p>
         <div id="add" className="flex justify-between items-center">
           <QuantityCounter

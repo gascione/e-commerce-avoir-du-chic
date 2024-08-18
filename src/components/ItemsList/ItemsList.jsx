@@ -4,9 +4,9 @@ import { ItemsContext } from "../../context/ItemsProvider";
 import { useContext } from "react";
 
 const ItemsList = () => {
-  const { items, isLoading } = useContext(ItemsContext);
+  const { items, isLoadingContent } = useContext(ItemsContext);
 
-  if (isLoading) {
+  if (isLoadingContent) {
     return <div>Loading...</div>;
   }
 
@@ -17,8 +17,8 @@ const ItemsList = () => {
           <Item
             key={key}
             title={item.title}
-            img={item.image}
-            price={item.price}
+            img={item.pictures[0]}
+            unit_price={item.unit_price}
             id={item.id}
             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
           />

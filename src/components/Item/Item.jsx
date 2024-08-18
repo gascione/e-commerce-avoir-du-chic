@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import QuantityCounter from "../QuantityCounter";
 import useQuantity from "../../hooks/useQuantity";
 
-const Item = ({ title, img, price, id }) => {
+const Item = ({ title, img, unit_price, id }) => {
   const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
     useQuantity();
   return (
@@ -22,7 +22,7 @@ const Item = ({ title, img, price, id }) => {
           </h5>
         </Link>
         <div className="mt-2 mb-5 flex items-center justify-between">
-          <h4 className="text-lg font-bold text-gray-900">${price}</h4>
+          <h4 className="text-lg font-bold text-gray-900">{unit_price}</h4>
           <QuantityCounter
             quantity={quantity}
             handleMinusQuantity={handleMinusQuantity}
