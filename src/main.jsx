@@ -12,6 +12,7 @@ import SignUp from "./components/SignUp";
 import { ItemsProvider } from "./context/ItemsProvider.jsx";
 import Details from "./pages/Details.jsx";
 import { UserSessionProvider } from "./context/UserSessionProvider.jsx";
+import SignOut from "./components/SignOut/SignOut.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
+      },
+      {
+        path: "signout",
+        element: <SignOut />,
       },
       {
         path: "products/:itemId",

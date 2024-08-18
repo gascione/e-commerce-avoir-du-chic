@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { UserSessionContext } from "../../context/UserSessionProvider";
 
 function NavBar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const { isLoggedIn, handleLogin } = useContext(UserSessionContext);
+  console.log("NavBar - isLoggedIn:", isLoggedIn);
   return (
     <>
       <nav
@@ -47,12 +50,24 @@ function NavBar() {
               <li className="nav-item px-3 py-2 text-white text-center">
                 <NavLink to="about">About</NavLink>
               </li>
-              <li className="nav-item px-3 py-2 text-white text-center">
-                <NavLink to="signup">Sign up</NavLink>
-              </li>
-              <li className="nav-item px-3 py-2 text-white text-center">
-                <NavLink to="login">Log in</NavLink>
-              </li>{" "}
+              {isLoggedIn && (
+                <>
+                  <li className="nav-item px-3 py-2 text-white text-center">
+                    <NavLink to="signout">Sign out</NavLink>
+                  </li>
+                </>
+              )}
+              {!isLoggedIn && (
+                <>
+                  <li className="nav-item px-3 py-2 text-white text-center">
+                    <NavLink to="signup">Sign up</NavLink>
+                  </li>
+                  <li className="nav-item px-3 py-2 text-white text-center">
+                    <NavLink to="login">Log in</NavLink>
+                  </li>{" "}
+                </>
+              )}
+
               <li className="nav-item px-3 py-2 text-white text-center">
                 <NavLink to="cart" className="relative inline-block">
                   {" "}

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../axios";
+import { UserSessionContext } from "../../context/UserSessionProvider";
 
 function LogIn() {
+  const { isLoggedIn, handleLogin } = useContext(UserSessionContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +21,7 @@ function LogIn() {
         },
       });
       console.log("Login successful:", response);
+      handleLogin();
       navigate("/");
     } catch (error) {
       console.log(error);
