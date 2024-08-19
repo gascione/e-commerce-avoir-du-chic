@@ -21,6 +21,7 @@ function LogIn() {
         },
       });
       handleLogin();
+      console.log("logged in :", response);
       navigate("/");
     } catch (error) {
       console.log(error);
