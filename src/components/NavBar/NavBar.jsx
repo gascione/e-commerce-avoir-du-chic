@@ -54,7 +54,7 @@ function NavBar() {
                 <>
                   <li className="nav-item px-3 py-2 text-white text-center">
                     <NavLink to="/login" onClick={handleLogout}>
-                      Sign out
+                      Cerrar Sesión
                     </NavLink>
                   </li>
                   <li className="nav-item px-3 py-2 text-white text-center">

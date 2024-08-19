@@ -8,13 +8,14 @@ import QuantityCounter from "../components/QuantityCounter";
 
 const Details = () => {
   const { itemId } = useParams();
-  const { items, isLoading } = useContext(ItemsContext);
+  const { isLoading } = useContext(ItemsContext);
   const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
     useQuantity();
   if (isLoading) {
     return <div>Cargando...</div>;
   }
-  const item = items.find((item) => item.id === parseInt(itemId, 10));
+  const storedItems = JSON.parse(localStorage.getItem("items"));
+  const item = storedItems.find((item) => item.id === parseInt(itemId, 10));
 
   return (
     <div className="flex flex-wrap items-start justify-center mt-8 space-y-4 md:space-y-0 md:space-x-4">

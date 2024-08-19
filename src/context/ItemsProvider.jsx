@@ -5,21 +5,28 @@ export const ItemsContext = createContext(null);
 export function ItemsProvider({ children }) {
   const [isLoadingContent, setIsLoadingContent] = useState(true);
   const [items, setItems] = useState([]);
-  let data = [];
+
   const fetchData = async (event) => {
     try {
-      const response = await axiosInstance.get("/products");
-      data = response.data.data;
+      const { data } = await axiosInstance.get("/products");
+      setItems(data.data);
+      localStorage.setItem("items", JSON.stringify(data.data));
     } catch (error) {
       console.log(error);
     } finally {
-      setItems(data);
+      console.log(items);
       setIsLoadingContent(false);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    const storedItems = localStorage.getItem("items");
+    if (storedItems) {
+      setItems(JSON.parse(storedItems));
+      setIsLoadingContent(false);
+    } else {
+      fetchData();
+    }
   }, []);
 
   return (
