@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 #nav a.active {
-  color: #e4adff;
+  text-decoration: underline #fff;
+  text-underline-offset: 4px;
 }
 #nav a.active.logo {
   color: #fff;
+  text-decoration: none;
 }

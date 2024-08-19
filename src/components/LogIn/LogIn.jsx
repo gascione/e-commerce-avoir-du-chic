@@ -20,7 +20,6 @@ function LogIn() {
           password,
         },
       });
-      console.log("Login successful:", response);
       handleLogin();
       navigate("/");
     } catch (error) {

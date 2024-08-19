@@ -18,7 +18,7 @@ const Home = () => {
               href="#itemsList"
               className="text-slate-900 bg-slate-50 hover:bg-slate-500 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none scroll-smooth"
             >
-              Buy now
+              Comprar ahora
             </a>
           </div>
         </div>

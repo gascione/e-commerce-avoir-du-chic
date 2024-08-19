@@ -8,7 +8,7 @@ const QuantityCounter = ({
   return (
     <div className="flex items-center justify-between">
       <div>
-        <h4 className="font-thin mr-4">Quantity : </h4>
+        <h4 className="font-thin mr-4">Cantidad : </h4>
       </div>
       <div className="py-2 px-3 inline-block bg-white border border-gray-200 rounded-lg">
         <div className="flex items-center gap-x-1.5">

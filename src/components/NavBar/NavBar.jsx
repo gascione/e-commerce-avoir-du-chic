@@ -6,8 +6,8 @@ import { UserSessionContext } from "../../context/UserSessionProvider";
 
 function NavBar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const { isLoggedIn, handleLogin } = useContext(UserSessionContext);
-  console.log("NavBar - isLoggedIn:", isLoggedIn);
+  const { isLoggedIn, handleLogin, handleLogout } =
+    useContext(UserSessionContext);
   return (
     <>
       <nav
@@ -48,38 +48,39 @@ function NavBar() {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li className="nav-item px-3 py-2 text-white text-center">
-                <NavLink to="about">About</NavLink>
+                <NavLink to="about">Sobre Nosotros</NavLink>
               </li>
               {isLoggedIn && (
                 <>
                   <li className="nav-item px-3 py-2 text-white text-center">
-                    <NavLink to="signout">Sign out</NavLink>
+                    <NavLink to="/login" onClick={handleLogout}>
+                      Sign out
+                    </NavLink>
+                  </li>
+                  <li className="nav-item px-3 py-2 text-white text-center">
+                    <NavLink to="cart" className="relative inline-block">
+                      {" "}
+                      <FontAwesomeIcon
+                        icon={faCartShopping}
+                        style={{ color: "#f8fafc" }}
+                      />
+                      <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-sm w-5 h-5 rounded-full flex items-center justify-center">
+                        0
+                      </span>
+                    </NavLink>
                   </li>
                 </>
               )}
               {!isLoggedIn && (
                 <>
                   <li className="nav-item px-3 py-2 text-white text-center">
-                    <NavLink to="signup">Sign up</NavLink>
+                    <NavLink to="signup">Registrarse</NavLink>
                   </li>
                   <li className="nav-item px-3 py-2 text-white text-center">
-                    <NavLink to="login">Log in</NavLink>
+                    <NavLink to="login">Iniciar Sesión</NavLink>
                   </li>{" "}
                 </>
               )}
-
-              <li className="nav-item px-3 py-2 text-white text-center">
-                <NavLink to="cart" className="relative inline-block">
-                  {" "}
-                  <FontAwesomeIcon
-                    icon={faCartShopping}
-                    style={{ color: "#f8fafc" }}
-                  />
-                  <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-sm w-5 h-5 rounded-full flex items-center justify-center">
-                    0
-                  </span>
-                </NavLink>
-              </li>
             </ul>
           </div>
         </div>

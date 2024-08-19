@@ -7,7 +7,7 @@ const ItemsList = () => {
   const { items, isLoadingContent } = useContext(ItemsContext);
 
   if (isLoadingContent) {
-    return <div>Loading...</div>;
+    return <div>Cargando...</div>;
   }
 
   return (

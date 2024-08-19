@@ -5,10 +5,14 @@ export const UserSessionProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogin = () => {
     setIsLoggedIn(true);
-    console.log("User is logged in");
+  };
+  const handleLogout = () => {
+    setIsLoggedIn(false);
   };
   return (
-    <UserSessionContext.Provider value={{ isLoggedIn, handleLogin }}>
+    <UserSessionContext.Provider
+      value={{ isLoggedIn, handleLogin, handleLogout }}
+    >
       {children}
     </UserSessionContext.Provider>
   );
