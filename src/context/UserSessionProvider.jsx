@@ -22,6 +22,7 @@ export const UserSessionProvider = ({ children }) => {
       setIsLoggedIn(false);
       localStorage.removeItem(AUTH_TOKEN);
       localStorage.removeItem("items");
+      localStorage.removeItem("cart");
     }
   };
   return (

@@ -1,7 +1,57 @@
-import React from "react";
+import { useState, useEffect, useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
-  return <div>Cart</div>;
+  const { getCart, cartItems, cartTotal, removeFromCart } =
+    useContext(CartContext);
+  // const [searchTerm, setSearchTerm] = useState("");
+
+  // const filteredItems = cartItems.filter((item) =>
+  //   item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+  if (cartItems.length === 0) {
+    return <div className="p-10 text-center">Tu carrito está vacío</div>;
+  }
+
+  return (
+    <div className="p-4 space-y-4">
+      <h2 className="text-3xl font-bold text-gray-900 mb-6">Tu Carrito</h2>
+      {cartItems.map((item) => (
+        <div
+          key={item.product.id}
+          className="flex items-center p-4 border rounded-lg bg-white shadow-md"
+        >
+          <div className="w-24 h-24 overflow-hidden rounded-md">
+            <img
+              src={item.product.pictures[0]}
+              alt={item.product.title}
+              className="object-cover w-full h-full"
+            />
+          </div>
+          <div className="flex-1 ml-4">
+            <h3 className="text-lg font-semibold text-gray-800">
+              {item.product.title}
+            </h3>
+            <p className="text-gray-500">Cantidad: {item.quantity}</p>
+            <p className="text-lg font-bold text-gray-900">
+              {item.total_price_in_shopping_cart}
+            </p>
+          </div>
+          <button
+            className="ml-4 text-red-600 hover:text-red-800"
+            onClick={() => removeFromCart(item.id)}
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        </div>
+      ))}
+      <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        Total : {cartTotal}
+      </h2>
+    </div>
+  );
 };
 
 export default Cart;

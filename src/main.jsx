@@ -30,6 +30,11 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+function AuthRoute({ element }) {
+  const { isLoggedIn } = useContext(UserSessionContext);
+  return isLoggedIn ? <Navigate to="/" /> : element;
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,7 +63,7 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <Login />,
+        element: <AuthRoute element={<Login />} />,
       },
       {
         path: "signup",

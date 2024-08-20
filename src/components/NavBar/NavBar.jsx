@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import { UserSessionContext } from "../../context/UserSessionProvider";
+import { CartContext } from "../../context/CartProvider";
 
 function NavBar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const { isLoggedIn, handleLogin, handleLogout } =
     useContext(UserSessionContext);
+  const { cartItems } = useContext(CartContext);
   return (
     <>
       <nav
@@ -65,7 +67,7 @@ function NavBar() {
                         style={{ color: "#f8fafc" }}
                       />
                       <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-sm w-5 h-5 rounded-full flex items-center justify-center">
-                        0
+                        {cartItems.length}
                       </span>
                     </NavLink>
                   </li>
