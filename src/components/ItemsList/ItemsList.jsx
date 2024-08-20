@@ -20,6 +20,7 @@ const ItemsList = () => {
             img={item.pictures[0]}
             unit_price={item.unit_price}
             id={item.id}
+            stock={item.stock}
             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
           />
         ))}

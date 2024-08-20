@@ -17,7 +17,7 @@ const QuantityCounter = ({
             className={`size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none ${
               quantity === 1 ? "cursor-not-allowed" : ""
             }`}
-            onClick={handleMinusQuantity}
+            onClick={() => handleMinusQuantity()}
             disabled={quantity === 1}
             aria-label="Decrease"
           >
@@ -42,7 +42,7 @@ const QuantityCounter = ({
           <button
             type="button"
             className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50"
-            onClick={handlePlusQuantity}
+            onClick={() => handlePlusQuantity()}
             aria-label="Increase"
           >
             <svg

@@ -19,7 +19,6 @@ import {
   UserSessionContext,
   UserSessionProvider,
 } from "./context/UserSessionProvider.jsx";
-import SignOut from "./components/SignOut/SignOut.jsx";
 import { CartProvider } from "./context/CartProvider.jsx";
 
 function ProtectedRoute({ children }) {
@@ -64,10 +63,6 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp />,
-      },
-      {
-        path: "signout",
-        element: <SignOut />,
       },
       {
         path: "products/:itemId",

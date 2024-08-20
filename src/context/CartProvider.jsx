@@ -1,44 +1,27 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { axiosInstance } from "../axios";
+import { UserSessionContext } from "./UserSessionProvider";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const addToCart = async (item, quantity) => {
-    // const id = item.id;
-    // try {
-    //   const response = await axiosInstance.post("shopping_cart/line_items", {
-    //     line_item: {
-    //       quantity,
-    //       product_id: id,
-    //     },
-    //   });
-    //   console.log("Cart ADDED :", response);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  const addToCart = async (id, quantity) => {
+    console.log(id + "quantity : " + quantity);
+    try {
+      const response = await axiosInstance.post("shopping_cart/line_items", {
+        line_item: {
+          quantity: quantity,
+          product_id: id,
+        },
+      });
+      console.log("Cart Successfull: ", response);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const removeFromCart = async (item) => {
-    // const id = item.id;
-    // try {
-    //   const response = await axiosInstance.delete("shopping_cart/line_items", {
-    //     id,
-    //   });
-    //   console.log("Cart deleted :", response);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  };
-
-  //   const getCartTotal = () => {
-  //     return cartItems.reduce(
-  //       (acc, item) => acc + item.unit_price * item.quantity,
-  //       0
-  //     );
-  //   };
 
   return (
-    <CartContext.Provider value={{ addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ addToCart }}>
       {children}
     </CartContext.Provider>
   );

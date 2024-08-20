@@ -30,24 +30,32 @@ const Details = () => {
         <h1 className="text-4xl font-medium">{item.title}</h1>
         <h2 className="text-3xl font-light">{item.unit_price}</h2>
         <p className="text-slate-600">{item.description}</p>
-        <div id="add" className="flex justify-between items-center">
-          <QuantityCounter
-            quantity={quantity}
-            handleMinusQuantity={handleMinusQuantity}
-            handlePlusQuantity={handlePlusQuantity}
-          />
-          <button
-            className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 w-80%"
-            onClick={handleAddToCart}
-          >
-            Agregar al carrito
-            <FontAwesomeIcon
-              icon={faCartShopping}
-              style={{ color: "#fff" }}
-              className="ml-2"
-            />
-          </button>
-        </div>
+        {item.stock <= 0 ? (
+          <div className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white">
+            Sin stock
+          </div>
+        ) : (
+          <>
+            <div id="add" className="flex justify-between items-center">
+              <QuantityCounter
+                quantity={quantity}
+                handleMinusQuantity={handleMinusQuantity}
+                handlePlusQuantity={handlePlusQuantity}
+              />
+              <button
+                className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 w-80%"
+                onClick={() => handleAddToCart(item.id)}
+              >
+                Agregar al carrito
+                <FontAwesomeIcon
+                  icon={faCartShopping}
+                  style={{ color: "#fff" }}
+                  className="ml-2"
+                />
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

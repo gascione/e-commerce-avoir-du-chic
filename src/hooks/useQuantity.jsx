@@ -14,7 +14,6 @@ const useQuantity = () => {
 
   const handleAddToCart = (id) => {
     addToCart(id, quantity);
-    console.log(quantity + " Item(s) added to cart");
   };
 
   return {

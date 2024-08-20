@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import QuantityCounter from "../QuantityCounter";
 import useQuantity from "../../hooks/useQuantity";
 
-const Item = ({ title, img, unit_price, id }) => {
+const Item = ({ title, img, unit_price, id, stock }) => {
   const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
     useQuantity();
   return (
@@ -21,26 +21,35 @@ const Item = ({ title, img, unit_price, id }) => {
             {title}
           </h5>
         </Link>
-        <div className="mt-2 mb-5 flex items-center justify-between">
-          <h4 className="text-lg font-bold text-gray-900">{unit_price}</h4>
-          <QuantityCounter
-            quantity={quantity}
-            handleMinusQuantity={handleMinusQuantity}
-            handlePlusQuantity={handlePlusQuantity}
-          />
-        </div>
-
-        <button
-          className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 w-full"
-          onClick={handleAddToCart(id)}
-        >
-          Agregar al carrito
-          <FontAwesomeIcon
-            icon={faCartShopping}
-            style={{ color: "#fff" }}
-            className="ml-2"
-          />
-        </button>
+        {stock <= 0 ? (
+          <div className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white">
+            Sin stock
+          </div>
+        ) : (
+          <>
+            {" "}
+            <div className="mt-2 mb-5 flex items-center justify-between">
+              <h4 className="text-lg font-bold text-gray-900">{unit_price}</h4>
+              <QuantityCounter
+                quantity={quantity}
+                handleMinusQuantity={handleMinusQuantity}
+                handlePlusQuantity={handlePlusQuantity}
+              />
+            </div>
+            <button
+              className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 w-full disabled:bg-slate-800"
+              onClick={() => handleAddToCart(id)}
+              disabled={stock <= 0}
+            >
+              Agregar al carrito
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                style={{ color: "#fff" }}
+                className="ml-2"
+              />
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

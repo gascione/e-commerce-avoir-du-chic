@@ -13,7 +13,6 @@ export const UserSessionProvider = ({ children }) => {
     setIsLoggedIn(true);
   };
   const handleLogout = async () => {
-    console.log("log out");
     try {
       const response = await axiosInstance.delete("/users/sign_out");
       console.log("Logout Successfull: ", response);
