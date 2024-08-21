@@ -1,9 +1,9 @@
-import { useState, useContext } from "react";
+import { faBars, faCartShopping, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { UserSessionContext } from "../../context/UserSessionProvider";
 import { CartContext } from "../../context/CartProvider";
+import { UserSessionContext } from "../../context/UserSessionProvider";
 
 function NavBar() {
   const [navbarOpen, setNavbarOpen] = useState(false);

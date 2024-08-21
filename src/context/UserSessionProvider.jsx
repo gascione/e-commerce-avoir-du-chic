@@ -1,6 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-import { AUTH_TOKEN } from "../axios";
-import { axiosInstance } from "../axios";
+import { createContext, useEffect, useState } from "react";
+import { AUTH_TOKEN, axiosInstance } from "../axios";
 
 export const UserSessionContext = createContext();
 export const UserSessionProvider = ({ children }) => {

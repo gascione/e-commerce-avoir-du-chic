@@ -1,7 +1,7 @@
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../../components/NavBar";
 import PopUp from "../../components/PopUp";
-import { useContext } from "react";
 import { CartContext } from "../../context/CartProvider";
 
 const Layout = () => {

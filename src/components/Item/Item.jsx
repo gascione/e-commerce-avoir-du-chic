@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import { Link } from "react-router-dom";
-import QuantityCounter from "../QuantityCounter";
 import useQuantity from "../../hooks/useQuantity";
+import QuantityCounter from "../QuantityCounter";
 
 const Item = ({ title, img, unit_price, id, stock }) => {
   const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =

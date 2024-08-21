@@ -1,25 +1,25 @@
 import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import {
   createBrowserRouter,
-  RouterProvider,
   Navigate,
+  RouterProvider,
 } from "react-router-dom";
-import Root from "./routes/Root/Root";
-import RouteError from "./components/RouteError/RouteError.jsx";
-import Home from "./pages/Home";
-import Cart from "./pages/Cart";
-import About from "./pages/About";
 import Login from "./components/LogIn";
+import RouteError from "./components/RouteError/RouteError.jsx";
 import SignUp from "./components/SignUp";
+import { CartProvider } from "./context/CartProvider.jsx";
 import { ItemsProvider } from "./context/ItemsProvider.jsx";
-import Details from "./pages/Details.jsx";
 import {
   UserSessionContext,
   UserSessionProvider,
 } from "./context/UserSessionProvider.jsx";
-import { CartProvider } from "./context/CartProvider.jsx";
+import "./index.css";
+import About from "./pages/About";
+import Cart from "./pages/Cart";
+import Details from "./pages/Details.jsx";
+import Home from "./pages/Home";
+import Root from "./routes/Root/Root";
 
 function ProtectedRoute({ children }) {
   const { isLoggedIn } = useContext(UserSessionContext);

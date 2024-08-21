@@ -1,7 +1,6 @@
-import React from "react";
-import Item from "../Item/Item";
+import React, { useContext } from "react";
 import { ItemsContext } from "../../context/ItemsProvider";
-import { useContext } from "react";
+import Item from "../Item/Item";
 
 const ItemsList = () => {
   const { items, isLoadingContent } = useContext(ItemsContext);

@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
-import { ItemsContext } from "../context/ItemsProvider";
-import { useParams } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import useQuantity from "../hooks/useQuantity";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import QuantityCounter from "../components/QuantityCounter";
+import { ItemsContext } from "../context/ItemsProvider";
+import useQuantity from "../hooks/useQuantity";
 
 const Details = () => {
   const { itemId } = useParams();

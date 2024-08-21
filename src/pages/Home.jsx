@@ -1,11 +1,7 @@
-import React, { useContext } from "react";
-import Item from "../components/Item/Item";
+import React from "react";
 import ItemsList from "../components/ItemsList/ItemsList";
-import PopUp from "../components/PopUp";
-import { CartContext } from "../context/CartProvider";
 
 const Home = () => {
-  const { popUp, handlePopUp, popUpMessage } = useContext(CartContext);
   return (
     <>
       <section className="bg-home bg-center bg-cover min-h-96">

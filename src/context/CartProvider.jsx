@@ -1,7 +1,6 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { axiosInstance } from "../axios";
 import { UserSessionContext } from "./UserSessionProvider";
-import PopUp from "../components/PopUp";
 
 export const CartContext = createContext();
 
