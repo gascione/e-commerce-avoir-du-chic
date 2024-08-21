@@ -1,13 +1,21 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { axiosInstance } from "../axios";
 import { UserSessionContext } from "./UserSessionProvider";
+import PopUp from "../components/PopUp";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const [popUp, setPopUp] = useState(false);
+  const [popUpMessage, setPopUpMessage] = useState("");
   const { isLoggedIn } = useContext(UserSessionContext);
+
+  const handlePopUp = () => {
+    setPopUp(false);
+  };
+
   const getCart = async () => {
     try {
       const { data } = await axiosInstance.get("shopping_cart", {});
@@ -35,12 +43,14 @@ export const CartProvider = ({ children }) => {
           `shopping_cart/line_items/${itemSelected.id}`,
           {
             line_item: {
-              quantity,
+              quantity: itemSelected.quantity + quantity,
             },
           }
         );
         console.log("Item Updated: ", response);
         getCart();
+        setPopUp(true);
+        setPopUpMessage("Producto se agregó al carrito");
       } catch (error) {
         console.log(error);
       }
@@ -54,6 +64,8 @@ export const CartProvider = ({ children }) => {
         });
         console.log("Cart Successfully: ", response);
         getCart();
+        setPopUp(true);
+        setPopUpMessage("Producto se agregó al carrito");
       } catch (error) {
         console.log(error);
       }
@@ -66,6 +78,8 @@ export const CartProvider = ({ children }) => {
         `shopping_cart/line_items/${id}`
       );
       console.log("Item Deleted: ", response);
+      setPopUpMessage("Producto eliminado del carrito");
+      setPopUp(true);
       getCart();
     } catch (error) {
       console.log(error);
@@ -87,7 +101,17 @@ export const CartProvider = ({ children }) => {
   }, [isLoggedIn]);
   return (
     <CartContext.Provider
-      value={{ addToCart, getCart, removeFromCart, cartItems, cartTotal }}
+      value={{
+        addToCart,
+        getCart,
+        removeFromCart,
+        cartItems,
+        cartTotal,
+        popUp,
+        setPopUp,
+        handlePopUp,
+        popUpMessage,
+      }}
     >
       {children}
     </CartContext.Provider>
