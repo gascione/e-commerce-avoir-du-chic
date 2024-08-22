@@ -36,24 +36,25 @@ const Details = () => {
           </div>
         ) : (
           <>
-            <div id="add" className="flex justify-between items-center">
+            <div className="mt-2 mb-5 flex flex-col items-start justify-between">
               <QuantityCounter
                 quantity={quantity}
                 handleMinusQuantity={handleMinusQuantity}
                 handlePlusQuantity={handlePlusQuantity}
+                stock={item.stock}
               />
-              <button
-                className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 w-80%"
-                onClick={() => handleAddToCart(item.id)}
-              >
-                Agregar al carrito
-                <FontAwesomeIcon
-                  icon={faCartShopping}
-                  style={{ color: "#fff" }}
-                  className="ml-2"
-                />
-              </button>
             </div>
+            <button
+              className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 w-80%"
+              onClick={() => handleAddToCart(item.id)}
+            >
+              Agregar al carrito
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                style={{ color: "#fff" }}
+                className="ml-2"
+              />
+            </button>
           </>
         )}
       </div>

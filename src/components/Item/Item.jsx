@@ -1,6 +1,6 @@
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useQuantity from "../../hooks/useQuantity";
 import QuantityCounter from "../QuantityCounter";
@@ -15,7 +15,7 @@ const Item = ({ title, img, unit_price, id, stock }) => {
           <img className="object-cover" src={img} alt={title} />
         </Link>
       </div>
-      <div className="mt-4 px-5 pb-5">
+      <div className="mt-4 px-5 pb-5 w-full">
         <Link to={`/products/${id}`}>
           <h5 className="text-xl tracking-tight text-slate-900 line-clamp-2 h-14">
             {title}
@@ -28,12 +28,13 @@ const Item = ({ title, img, unit_price, id, stock }) => {
         ) : (
           <>
             {" "}
-            <div className="mt-2 mb-5 flex items-center justify-between">
+            <div className="mt-2 mb-5 flex flex-col items-start justify-between">
               <h4 className="text-lg font-bold text-gray-900">{unit_price}</h4>
               <QuantityCounter
                 quantity={quantity}
                 handleMinusQuantity={handleMinusQuantity}
                 handlePlusQuantity={handlePlusQuantity}
+                stock={stock}
               />
             </div>
             <button

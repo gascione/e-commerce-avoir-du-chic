@@ -79,11 +79,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserSessionProvider>
-      <ItemsProvider>
-        <CartProvider>
+      <CartProvider>
+        <ItemsProvider>
           <RouterProvider router={router} />
-        </CartProvider>
-      </ItemsProvider>
+        </ItemsProvider>
+      </CartProvider>
     </UserSessionProvider>
   </React.StrictMode>
 );

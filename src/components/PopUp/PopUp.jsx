@@ -3,7 +3,6 @@ import React from "react";
 function PopUp({ popUp, closePopUp, popUpMessage }) {
   const handlelosePopUp = (e) => {
     if (e.target.id === "ModelContainer") {
-      console.log("close popup");
       closePopUp();
     }
   };

@@ -1,12 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosInstance } from "../axios";
 import { UserSessionContext } from "./UserSessionProvider";
+import { CartContext } from "./CartProvider";
 
 export const ItemsContext = createContext(null);
 export function ItemsProvider({ children }) {
   const [isLoadingContent, setIsLoadingContent] = useState(true);
   const [items, setItems] = useState([]);
   const { isLoggedIn } = useContext(UserSessionContext);
+  const { cartItems } = useContext(CartContext);
 
   const fetchData = async () => {
     try {
@@ -19,6 +21,10 @@ export function ItemsProvider({ children }) {
       setIsLoadingContent(false);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [cartItems]);
 
   useEffect(() => {
     if (!isLoggedIn) {

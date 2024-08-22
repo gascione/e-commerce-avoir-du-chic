@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
   const getCart = async () => {
     try {
       const { data } = await axiosInstance.get("shopping_cart", {});
-      console.log("Cart: ", data);
+      // console.log("Cart: ", data);
       localStorage.setItem("cart", JSON.stringify(data));
       setCart(data.line_items);
       setCartTotal(data.total_price);
@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (id, quantity) => {
-    console.log(id + "quantity : " + quantity);
+    // console.log(id + "quantity : " + quantity);
     getCart();
     const itemSelected = isInCart(id);
     if (itemSelected) {
@@ -46,7 +46,7 @@ export const CartProvider = ({ children }) => {
             },
           }
         );
-        console.log("Item Updated: ", response);
+        // console.log("Item Updated: ", response);
         getCart();
         setPopUp(true);
         setPopUpMessage("Producto se agregó al carrito");
@@ -61,7 +61,7 @@ export const CartProvider = ({ children }) => {
             product_id: id,
           },
         });
-        console.log("Cart Successfully: ", response);
+        // console.log("Cart Successfully: ", response);
         getCart();
         setPopUp(true);
         setPopUpMessage("Producto se agregó al carrito");
@@ -76,7 +76,7 @@ export const CartProvider = ({ children }) => {
       const response = await axiosInstance.delete(
         `shopping_cart/line_items/${id}`
       );
-      console.log("Item Deleted: ", response);
+      // console.log("Item Deleted: ", response);
       setPopUpMessage("Producto eliminado del carrito");
       setPopUp(true);
       getCart();

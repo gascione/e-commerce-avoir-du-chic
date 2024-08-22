@@ -9,7 +9,6 @@ const Cart = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredData = cartItems.filter((item) => {
-    console.log(item);
     if (searchTerm === "") {
       return item;
     } else {
