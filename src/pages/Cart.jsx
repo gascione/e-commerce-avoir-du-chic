@@ -59,7 +59,7 @@ const Cart = () => {
           </div>
           <button
             className="ml-4 text-red-600 hover:text-red-800"
-            onClick={() => removeFromCart(item.id)}
+            onClick={() => removeFromCart(item.id, item.product.title)}
           >
             <FontAwesomeIcon icon={faTrash} />
           </button>

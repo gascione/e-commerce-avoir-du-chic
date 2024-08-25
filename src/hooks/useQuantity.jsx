@@ -12,8 +12,8 @@ const useQuantity = () => {
     setQuantity(quantity + 1);
   };
 
-  const handleAddToCart = (id) => {
-    addToCart(id, quantity);
+  const handleAddToCart = (id, title) => {
+    addToCart(id, quantity, title);
     setQuantity(1);
   };
 

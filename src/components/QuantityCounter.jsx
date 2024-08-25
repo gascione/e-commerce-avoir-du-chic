@@ -7,14 +7,14 @@ const QuantityCounter = ({
   stock,
 }) => {
   return (
-    <div className="flex flex-row flex-wrap items-center justify-between">
+    <div className="flex flex-col flex-wrap justify-between">
       <div id="stock" className="flex flex-row items-center">
-        <h4 className="font-thin mr-4">Stock : </h4>
+        <h4 className="font-thin mr-1">Stock total: </h4>
         <h4 className="font-thin">{stock} Unidades</h4>
       </div>
       <div id="cantidad" className="flex flex-row items-center">
         <div>
-          <h4 className="font-thin mr-4">Cantidad : </h4>
+          <h4 className="font-thin mr-1">Cantidad : </h4>
         </div>
         <div className="py-2 px-3 inline-block bg-white border border-gray-200 rounded-lg">
           <div className="flex items-center gap-x-1.5">

@@ -18,8 +18,6 @@ export const CartProvider = ({ children }) => {
   const getCart = async () => {
     try {
       const { data } = await axiosInstance.get("shopping_cart", {});
-      // console.log("Cart: ", data);
-      localStorage.setItem("cart", JSON.stringify(data));
       setCart(data.line_items);
       setCartTotal(data.total_price);
     } catch (error) {
@@ -32,8 +30,7 @@ export const CartProvider = ({ children }) => {
     return item;
   };
 
-  const addToCart = async (id, quantity) => {
-    // console.log(id + "quantity : " + quantity);
+  const addToCart = async (id, quantity, title) => {
     getCart();
     const itemSelected = isInCart(id);
     if (itemSelected) {
@@ -46,12 +43,17 @@ export const CartProvider = ({ children }) => {
             },
           }
         );
-        // console.log("Item Updated: ", response);
         getCart();
         setPopUp(true);
-        setPopUpMessage("Producto se agregó al carrito");
+        setPopUpMessage(`${title} se agregó al carrito`);
       } catch (error) {
         console.log(error);
+        const errorQuantity = error.request.response.match(/\d+/)[0];
+        console.log(errorQuantity);
+        setPopUp(true);
+        setPopUpMessage(
+          `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidades en total`
+        );
       }
     } else {
       try {
@@ -61,23 +63,27 @@ export const CartProvider = ({ children }) => {
             product_id: id,
           },
         });
-        // console.log("Cart Successfully: ", response);
         getCart();
         setPopUp(true);
-        setPopUpMessage("Producto se agregó al carrito");
+        setPopUpMessage(`${title} se agregó al carrito`);
       } catch (error) {
         console.log(error);
+        const errorQuantity = error.request.response.match(/\d+/)[0];
+        console.log(errorQuantity);
+        setPopUp(true);
+        setPopUpMessage(
+          `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidades en total`
+        );
       }
     }
   };
 
-  const removeFromCart = async (id) => {
+  const removeFromCart = async (id, title) => {
     try {
       const response = await axiosInstance.delete(
         `shopping_cart/line_items/${id}`
       );
-      // console.log("Item Deleted: ", response);
-      setPopUpMessage("Producto eliminado del carrito");
+      setPopUpMessage(`${title} fue eliminado del carrito`);
       setPopUp(true);
       getCart();
     } catch (error) {
@@ -87,15 +93,8 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      const storedCart = localStorage.getItem("cart");
-      if (storedCart) {
-        const parsedCart = JSON.parse(storedCart);
-        setCart(parsedCart.line_items);
-        setCartTotal(parsedCart.total_price);
-      } else {
-        console.log("Use Effect paso isLoggedIn");
-        getCart();
-      }
+      console.log("Use Effect paso isLoggedIn");
+      getCart();
     }
   }, [isLoggedIn]);
   return (

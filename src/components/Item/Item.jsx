@@ -39,7 +39,7 @@ const Item = ({ title, img, unit_price, id, stock }) => {
             </div>
             <button
               className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 w-full disabled:bg-slate-800"
-              onClick={() => handleAddToCart(id)}
+              onClick={() => handleAddToCart(id, title)}
               disabled={stock <= 0}
             >
               Agregar al carrito
