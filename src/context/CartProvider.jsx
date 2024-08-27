@@ -52,7 +52,7 @@ export const CartProvider = ({ children }) => {
         console.log(errorQuantity);
         setPopUp(true);
         setPopUpMessage(
-          `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidades en total`
+          `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidad(es) en total`
         );
       }
     } else {
@@ -72,7 +72,35 @@ export const CartProvider = ({ children }) => {
         console.log(errorQuantity);
         setPopUp(true);
         setPopUpMessage(
-          `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidades en total`
+          `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidad(es) en total`
+        );
+      }
+    }
+  };
+
+  const updateToCart = async (id, quantity, title) => {
+    getCart();
+    const itemSelected = isInCart(id);
+    if (itemSelected) {
+      try {
+        const response = await axiosInstance.patch(
+          `shopping_cart/line_items/${itemSelected.id}`,
+          {
+            line_item: {
+              quantity: quantity,
+            },
+          }
+        );
+        getCart();
+        setPopUp(true);
+        setPopUpMessage(`Se actualizó la cantidad de ${title}`);
+      } catch (error) {
+        console.log(error);
+        const errorQuantity = error.request.response.match(/\d+/)[0];
+        console.log(errorQuantity);
+        setPopUp(true);
+        setPopUpMessage(
+          `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidad(es) en total`
         );
       }
     }
@@ -109,6 +137,7 @@ export const CartProvider = ({ children }) => {
         setPopUp,
         handlePopUp,
         popUpMessage,
+        updateToCart,
       }}
     >
       {children}

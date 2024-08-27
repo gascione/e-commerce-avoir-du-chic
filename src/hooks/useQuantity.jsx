@@ -1,15 +1,19 @@
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartProvider";
 
-const useQuantity = () => {
-  const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useContext(CartContext);
+const useQuantity = (initialQuantity = 1, stock) => {
+  const [quantity, setQuantity] = useState(initialQuantity);
+  const { addToCart, updateToCart } = useContext(CartContext);
   const handleMinusQuantity = () => {
-    setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
   };
 
   const handlePlusQuantity = () => {
-    setQuantity(quantity + 1);
+    if (quantity < stock) {
+      setQuantity((prevQuantity) => prevQuantity + 1);
+    }
   };
 
   const handleAddToCart = (id, title) => {
@@ -17,11 +21,16 @@ const useQuantity = () => {
     setQuantity(1);
   };
 
+  const updateElementToCart = (id, title) => {
+    updateToCart(id, quantity, title);
+  };
+
   return {
     quantity,
     handleMinusQuantity,
     handlePlusQuantity,
     handleAddToCart,
+    updateElementToCart,
   };
 };
 

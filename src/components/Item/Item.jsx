@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useQuantity from "../../hooks/useQuantity";
-import QuantityCounter from "../QuantityCounter";
+import QuantityCounter from "../Quantity/QuantityCounter";
 
 const Item = ({ title, img, unit_price, id, stock }) => {
   const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
-    useQuantity();
+    useQuantity(1, stock);
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
       <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">

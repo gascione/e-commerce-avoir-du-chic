@@ -2,20 +2,20 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import QuantityCounter from "../components/QuantityCounter";
+import QuantityCounter from "../components/Quantity/QuantityCounter";
 import { ItemsContext } from "../context/ItemsProvider";
 import useQuantity from "../hooks/useQuantity";
 
 const Details = () => {
   const { itemId } = useParams();
   const { isLoading } = useContext(ItemsContext);
-  const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
-    useQuantity();
   if (isLoading) {
     return <div>Cargando...</div>;
   }
   const storedItems = JSON.parse(localStorage.getItem("items"));
   const item = storedItems.find((item) => item.id === parseInt(itemId, 10));
+  const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
+    useQuantity(item.quantity, item.stock);
 
   return (
     <div className="flex flex-wrap items-start justify-center mt-8 space-y-4 md:space-y-0 md:space-x-4">

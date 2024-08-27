@@ -1,11 +1,15 @@
-import { faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faTrash,
+  faCartShopping,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartProvider";
+import ItemsCart from "../components/ItemsCart";
 
 const Cart = () => {
-  const { cartItems, cartTotal, removeFromCart } = useContext(CartContext);
-
+  const { cartItems, cartTotal } = useContext(CartContext);
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredData = cartItems.filter((item) => {
@@ -17,12 +21,21 @@ const Cart = () => {
   });
 
   if (cartItems.length === 0) {
-    return <div className="p-10 text-center">Tu carrito está vacío</div>;
+    return (
+      <div className="p-10 text-center">
+        Tu carrito está vacío{" "}
+        <FontAwesomeIcon
+          icon={faCartShopping}
+          style={{ color: "#000" }}
+          className="ml-2"
+        />
+      </div>
+    );
   }
 
   return (
     <div className="p-4 space-y-4">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Tu Carrito</h1>
+      <h1 className="text-3xl font-bold text-slate-900 mb-6">Tu Carrito</h1>
       <form className="w-full relative">
         <div className="relative">
           <input
@@ -37,35 +50,18 @@ const Cart = () => {
         </div>
       </form>
       {filteredData.map((item) => (
-        <div
+        <ItemsCart
+          title={item.product.title}
+          img={item.product.pictures[0]}
+          quantityItem={item.quantity}
+          totalPrice={item.total_price_in_shopping_cart}
+          stock={item.product.stock}
+          idItem={item.product.id}
+          id={item.id}
           key={item.product.id}
-          className="flex items-center p-4 border rounded-lg bg-white shadow-md"
-        >
-          <div className="w-24 h-24 overflow-hidden rounded-md">
-            <img
-              src={item.product.pictures[0]}
-              alt={item.product.title}
-              className="object-cover w-full h-full"
-            />
-          </div>
-          <div className="flex-1 ml-4">
-            <h3 className="text-lg font-semibold text-gray-800">
-              {item.product.title}
-            </h3>
-            <p className="text-gray-500">Cantidad: {item.quantity}</p>
-            <p className="text-lg font-bold text-gray-900">
-              {item.total_price_in_shopping_cart}
-            </p>
-          </div>
-          <button
-            className="ml-4 text-red-600 hover:text-red-800"
-            onClick={() => removeFromCart(item.id, item.product.title)}
-          >
-            <FontAwesomeIcon icon={faTrash} />
-          </button>
-        </div>
+        />
       ))}
-      <h2 className="text-3xl font-bold text-gray-900 mb-6">
+      <h2 className="text-3xl font-bold text-slate-900 mb-6">
         Total : {cartTotal}
       </h2>
     </div>
