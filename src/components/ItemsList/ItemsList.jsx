@@ -12,9 +12,9 @@ const ItemsList = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center gap-5">
-        {items.map((item, key) => (
+        {items.map((item) => (
           <Item
-            key={key}
+            key={item.id}
             title={item.title}
             img={item.pictures[0]}
             unit_price={item.unit_price}

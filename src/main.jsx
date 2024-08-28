@@ -71,7 +71,12 @@ const router = createBrowserRouter([
       },
       {
         path: "products/:itemId",
-        element: <Details />,
+
+        element: (
+          <ProtectedRoute>
+            <Details />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

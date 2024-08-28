@@ -8,12 +8,12 @@ import useQuantity from "../hooks/useQuantity";
 
 const Details = () => {
   const { itemId } = useParams();
-  const { isLoading } = useContext(ItemsContext);
+  const { items, isLoading } = useContext(ItemsContext);
   if (isLoading) {
     return <div>Cargando...</div>;
   }
-  const storedItems = JSON.parse(localStorage.getItem("items"));
-  const item = storedItems.find((item) => item.id === parseInt(itemId, 10));
+
+  const item = items.find((item) => item.id === parseInt(itemId, 10));
   const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
     useQuantity(item.quantity, item.stock);
 

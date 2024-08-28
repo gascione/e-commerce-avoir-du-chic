@@ -55,9 +55,7 @@ function NavBar() {
               {isLoggedIn && (
                 <>
                   <li className="nav-item px-3 py-2 text-white text-center">
-                    <NavLink to="/login" onClick={handleLogout}>
-                      Cerrar Sesión
-                    </NavLink>
+                    <button onClick={handleLogout}>Cerrar Sesión</button>
                   </li>
                   <li className="nav-item px-3 py-2 text-white text-center">
                     <NavLink to="cart" className="relative inline-block">
