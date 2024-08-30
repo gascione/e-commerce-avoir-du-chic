@@ -119,12 +119,43 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const cartCheckout = async () => {
+    try {
+      const response = await axiosInstance.post(`orders`, {
+        order: {
+          credit_card: {
+            card_number: "4242424242424242",
+            exp_month: 8,
+            exp_year: 2024,
+            cvc: "222",
+          },
+          shipping_address: {
+            city: "La Plata",
+            country: "AR",
+            line_1: "line_1",
+            line_2: "line_2",
+            postal_code: "1900",
+            state: "Buenos Aires",
+          },
+        },
+      });
+      setPopUpMessage(`Compra realizada con éxito`);
+      setPopUp(true);
+      setCart([]);
+      setCartTotal([]);
+      getCart();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     if (isLoggedIn) {
       console.log("Use Effect paso isLoggedIn");
       getCart();
     }
   }, [isLoggedIn]);
+
   return (
     <CartContext.Provider
       value={{
@@ -138,6 +169,7 @@ export const CartProvider = ({ children }) => {
         handlePopUp,
         popUpMessage,
         updateToCart,
+        cartCheckout,
       }}
     >
       {children}

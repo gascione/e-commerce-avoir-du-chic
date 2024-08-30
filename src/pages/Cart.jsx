@@ -1,24 +1,39 @@
-import {
-  faSearch,
-  faTrash,
-  faCartShopping,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartProvider";
 import ItemsCart from "../components/ItemsCart";
 
 const Cart = () => {
-  const { cartItems, cartTotal } = useContext(CartContext);
+  const { cartItems, cartTotal, cartCheckout } = useContext(CartContext);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
+  const handleSort = (order) => {
+    setSortOrder(order);
+  };
 
-  const filteredData = cartItems.filter((item) => {
-    if (searchTerm === "") {
-      return item;
-    } else {
-      return item.product.title.toLowerCase().includes(searchTerm);
-    }
-  });
+  const filteredData = cartItems
+    .filter((item) => {
+      if (searchTerm === "") {
+        return item;
+      } else {
+        return item.product.title.toLowerCase().includes(searchTerm);
+      }
+    })
+    .sort((a, b) => {
+      const priceA = a.total_price_in_shopping_cart.match(/\d+/);
+      const priceB = b.total_price_in_shopping_cart.match(/\d+/);
+      if (sortOrder === "ascAlpha") {
+        return a.product.title.localeCompare(b.product.title);
+      } else if (sortOrder === "desAlpha") {
+        return b.product.title.localeCompare(a.product.title);
+      } else if (sortOrder === "ascPrice") {
+        return priceA - priceB;
+      } else if (sortOrder === "desPrice") {
+        return priceB - priceA;
+      }
+      return 0;
+    });
 
   if (cartItems.length === 0) {
     return (
@@ -49,6 +64,32 @@ const Cart = () => {
           </p>
         </div>
       </form>
+      <div className="flex flex-col flex-wrap sm:flex-row">
+        <button
+          className="px-4 py-2 m-2 bg-slate-800 text-white rounded-md hover:bg-slate-900"
+          onClick={() => handleSort("ascAlpha")}
+        >
+          A-Z
+        </button>
+        <button
+          className="px-4 py-2 m-2 bg-slate-800 text-white rounded-md hover:bg-slate-900"
+          onClick={() => handleSort("desAlpha")}
+        >
+          Z-A
+        </button>
+        <button
+          className="px-4 py-2 m-2 bg-slate-800 text-white rounded-md hover:bg-slate-900"
+          onClick={() => handleSort("desPrice")}
+        >
+          Mayor precio
+        </button>
+        <button
+          className="px-4 py-2 m-2 bg-slate-800 text-white rounded-md hover:bg-slate-900"
+          onClick={() => handleSort("ascPrice")}
+        >
+          Menor precio
+        </button>
+      </div>
       {filteredData.map((item) => (
         <ItemsCart
           title={item.product.title}
@@ -61,9 +102,17 @@ const Cart = () => {
           key={item.product.id}
         />
       ))}
-      <h2 className="text-3xl font-bold text-slate-900 mb-6">
-        Total : {cartTotal}
-      </h2>
+      <div className="flex flex-row justify-between items-center">
+        <h2 className="text-3xl font-bold text-slate-900">
+          Total : {cartTotal}
+        </h2>
+        <button
+          className="sm:ml-4 px-4 py-2 bg-slate-800 text-white rounded-md hover:bg-slate-900  flex items-center"
+          onClick={cartCheckout}
+        >
+          Comprar
+        </button>
+      </div>
     </div>
   );
 };
