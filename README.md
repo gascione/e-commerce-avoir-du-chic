@@ -1,1 +1,1 @@
-# e-commerce-avoir-du-chic
+# e-commerce-bootcamp
