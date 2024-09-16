@@ -125,7 +125,7 @@ export const CartProvider = ({ children }) => {
         order: {
           credit_card: {
             card_number: "4242424242424242",
-            exp_month: 8,
+            exp_month: 12,
             exp_year: 2024,
             cvc: "222",
           },

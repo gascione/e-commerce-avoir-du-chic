@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartProvider";
 import ItemsCart from "../components/ItemsCart";
+import { filterData } from "../assets/utils";
 
 const Cart = () => {
   const { cartItems, cartTotal, cartCheckout } = useContext(CartContext);
@@ -12,28 +13,7 @@ const Cart = () => {
     setSortOrder(order);
   };
 
-  const filteredData = cartItems
-    .filter((item) => {
-      if (searchTerm === "") {
-        return item;
-      } else {
-        return item.product.title.toLowerCase().includes(searchTerm);
-      }
-    })
-    .sort((a, b) => {
-      const priceA = a.total_price_in_shopping_cart.match(/\d+/);
-      const priceB = b.total_price_in_shopping_cart.match(/\d+/);
-      if (sortOrder === "ascAlpha") {
-        return a.product.title.localeCompare(b.product.title);
-      } else if (sortOrder === "desAlpha") {
-        return b.product.title.localeCompare(a.product.title);
-      } else if (sortOrder === "ascPrice") {
-        return priceA - priceB;
-      } else if (sortOrder === "desPrice") {
-        return priceB - priceA;
-      }
-      return 0;
-    });
+  const filteredData = filterData(cartItems, searchTerm, sortOrder);
 
   if (cartItems.length === 0) {
     return (
