@@ -9,7 +9,7 @@ const Item = ({ title, img, unit_price, id, stock }) => {
   const { quantity, handleMinusQuantity, handlePlusQuantity, handleAddToCart } =
     useQuantity(1, stock);
   return (
-    <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+    <div className="relative m-10 flex w-full max-w-xs flex-col justify-between overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
       <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
         <Link to={`/products/${id}`}>
           <img className="object-cover" src={img} alt={title} />

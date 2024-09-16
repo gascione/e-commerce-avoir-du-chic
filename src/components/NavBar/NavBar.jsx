@@ -10,6 +10,9 @@ function NavBar() {
   const { isLoggedIn, handleLogin, handleLogout } =
     useContext(UserSessionContext);
   const { cartItems } = useContext(CartContext);
+  const handleLinkClick = () => {
+    setNavbarOpen(false);
+  };
   return (
     <>
       <nav
@@ -47,18 +50,33 @@ function NavBar() {
                 <FontAwesomeIcon icon={faX} style={{ color: "#f8fafc" }} />
               </button>
               <li className="nav-item px-3 py-2 text-white text-center">
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/" onClick={handleLinkClick}>
+                  Home
+                </NavLink>
               </li>
               <li className="nav-item px-3 py-2 text-white text-center">
-                <NavLink to="about">Sobre Nosotros</NavLink>
+                <NavLink to="about" onClick={handleLinkClick}>
+                  Sobre Nosotros
+                </NavLink>
               </li>
               {isLoggedIn && (
                 <>
                   <li className="nav-item px-3 py-2 text-white text-center">
-                    <button onClick={handleLogout}>Cerrar Sesión</button>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        handleLinkClick();
+                      }}
+                    >
+                      Cerrar Sesión
+                    </button>
                   </li>
                   <li className="nav-item px-3 py-2 text-white text-center">
-                    <NavLink to="cart" className="relative inline-block">
+                    <NavLink
+                      to="cart"
+                      className="relative inline-block"
+                      onClick={handleLinkClick}
+                    >
                       {" "}
                       <FontAwesomeIcon
                         icon={faCartShopping}

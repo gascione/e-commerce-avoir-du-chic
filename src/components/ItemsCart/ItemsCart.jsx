@@ -46,7 +46,7 @@ function ItemsCart({
         />
 
         <button
-          className="mt-2 sm:mt-0 sm:ml-4 px-4 py-2 bg-slate-600 text-white rounded-md hover:bg-slate-700  flex items-center"
+          className="mt-2 sm:mt-0 sm:ml-4 px-4 py-2 bg-slate-800 text-white rounded-md hover:bg-slate-900  flex items-center"
           onClick={() => updateElementToCart(idItem, title)}
         >
           Actualizar
