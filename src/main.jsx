@@ -20,6 +20,7 @@ import Cart from "./pages/Cart";
 import Details from "./pages/Details.jsx";
 import Home from "./pages/Home";
 import Root from "./routes/Root/Root";
+import { Toaster } from "react-hot-toast";
 
 function ProtectedRoute({ children }) {
   const { isLoggedIn } = useContext(UserSessionContext);
@@ -87,6 +88,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <CartProvider>
         <ItemsProvider>
           <RouterProvider router={router} />
+          <Toaster position="top-right" />
         </ItemsProvider>
       </CartProvider>
     </UserSessionProvider>
