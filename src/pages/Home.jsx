@@ -22,7 +22,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div id="itemsList">
+      <div id="itemsList" className="py-8">
         {" "}
         <ItemsList />
       </div>

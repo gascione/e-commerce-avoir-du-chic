@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="p-10 space-y-6">
+    <div className="px-10 py-8 space-y-6">
       <h1 className="text-4xl font-bold text-slate-900 mb-6">Sobre Nosotros</h1>
       <p className="text-lg text-slate-800">
         Esta página fue desarrollada como parte del{" "}
