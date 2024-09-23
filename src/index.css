@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  height: 100vh;
-}
 #nav a.active {
   text-decoration: underline #fff;
   text-underline-offset: 4px;
