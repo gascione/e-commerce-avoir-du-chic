@@ -10,7 +10,18 @@ const Details = () => {
   const { itemId } = useParams();
   const { items, isLoading } = useContext(ItemsContext);
   if (isLoading) {
-    return <div>Cargando...</div>;
+    return (
+      <>
+        <div className="animate-pulse flex justify-center">
+          <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl bg-gray-300" />
+          <div className="mt-4 px-5 pb-5 w-full">
+            <div className="h-6 bg-gray-300 rounded w-3/4 mb-4" />
+            <div className="h-6 bg-gray-300 rounded w-1/2 mb-4" />
+            <div className="h-8 bg-gray-300 rounded w-full" />
+          </div>
+        </div>
+      </>
+    );
   }
 
   const item = items.find((item) => item.id === parseInt(itemId, 10));
@@ -18,7 +29,7 @@ const Details = () => {
     useQuantity(item.quantity, item.stock);
 
   return (
-    <div className="flex flex-wrap items-start justify-center mt-8 space-y-4 md:space-y-0 md:space-x-4">
+    <div className="flex flex-wrap items-start justify-center py-8 mt-8 space-y-4 md:space-y-0 md:space-x-4">
       <div>
         <img
           src={item.pictures[0]}
