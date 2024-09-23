@@ -1,9 +1,9 @@
-import { faSearch, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
-import { CartContext } from "../context/CartProvider";
-import ItemsCart from "../components/ItemsCart";
 import { filterData } from "../assets/utils";
+import ItemsCart from "../components/ItemsCart";
+import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
   const { cartItems, cartTotal, cartCheckout } = useContext(CartContext);

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
+import { Toaster } from "react-hot-toast";
 import {
   createBrowserRouter,
   Navigate,
@@ -20,7 +21,6 @@ import Cart from "./pages/Cart";
 import Details from "./pages/Details.jsx";
 import Home from "./pages/Home";
 import Root from "./routes/Root/Root";
-import { Toaster } from "react-hot-toast";
 
 function ProtectedRoute({ children }) {
   const { isLoggedIn } = useContext(UserSessionContext);
