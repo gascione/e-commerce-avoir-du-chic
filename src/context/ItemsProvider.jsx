@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosInstance } from "../axios";
-import { UserSessionContext } from "./UserSessionProvider";
 import { CartContext } from "./CartProvider";
 
 export const ItemsContext = createContext(null);

@@ -38,28 +38,29 @@ function ItemsCart({
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center mt-4 sm:mt-0">
+      <div className="flex flex-col w-full sm:w-auto sm:flex-row items-center mt-4 sm:mt-0">
         <Quantity
           quantity={quantity}
           handleMinusQuantity={handleMinusQuantity}
           handlePlusQuantity={handlePlusQuantity}
         />
+        <div className="flex w-full justify-center">
+          <button
+            className="mt-2 mr-2 sm:mt-0 sm:ml-4 sm:mr-0 px-4 py-2 bg-slate-900 text-white rounded-md hover:bg-slate-950  flex items-center"
+            onClick={() => updateElementToCart(idItem, title)}
+          >
+            Actualizar
+            <FontAwesomeIcon icon={faRefresh} className="ml-2" />
+          </button>
 
-        <button
-          className="mt-2 sm:mt-0 sm:ml-4 px-4 py-2 bg-slate-800 text-white rounded-md hover:bg-slate-900  flex items-center"
-          onClick={() => updateElementToCart(idItem, title)}
-        >
-          Actualizar
-          <FontAwesomeIcon icon={faRefresh} className="ml-2" />
-        </button>
-
-        <button
-          className="mt-2 sm:mt-0 sm:ml-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 flex items-center"
-          onClick={() => removeFromCart(id, title)}
-        >
-          Borrar
-          <FontAwesomeIcon icon={faTrash} className="ml-2" />
-        </button>
+          <button
+            className="mt-2 sm:mt-0 sm:ml-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 flex items-center"
+            onClick={() => removeFromCart(id, title)}
+          >
+            Borrar
+            <FontAwesomeIcon icon={faTrash} className="ml-2" />
+          </button>
+        </div>
       </div>
     </div>
   );

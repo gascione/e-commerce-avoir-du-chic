@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { axiosInstance } from "../axios";
 import { UserSessionContext } from "./UserSessionProvider";
 
@@ -7,13 +8,7 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-  const [popUp, setPopUp] = useState(false);
-  const [popUpMessage, setPopUpMessage] = useState("");
   const { isLoggedIn } = useContext(UserSessionContext);
-
-  const handlePopUp = () => {
-    setPopUp(false);
-  };
 
   const getCart = async () => {
     try {
@@ -44,14 +39,12 @@ export const CartProvider = ({ children }) => {
           }
         );
         getCart();
-        setPopUp(true);
-        setPopUpMessage(`${title} se agregó al carrito`);
+        toast.success(`${title} se agregó al carrito.`);
       } catch (error) {
         console.log(error);
         const errorQuantity = error.request.response.match(/\d+/)[0];
         console.log(errorQuantity);
-        setPopUp(true);
-        setPopUpMessage(
+        toast.error(
           `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidad(es) en total`
         );
       }
@@ -64,14 +57,12 @@ export const CartProvider = ({ children }) => {
           },
         });
         getCart();
-        setPopUp(true);
-        setPopUpMessage(`${title} se agregó al carrito`);
+        toast.success(`${title} se agregó al carrito.`);
       } catch (error) {
         console.log(error);
         const errorQuantity = error.request.response.match(/\d+/)[0];
         console.log(errorQuantity);
-        setPopUp(true);
-        setPopUpMessage(
+        toast.error(
           `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidad(es) en total`
         );
       }
@@ -92,14 +83,12 @@ export const CartProvider = ({ children }) => {
           }
         );
         getCart();
-        setPopUp(true);
-        setPopUpMessage(`Se actualizó la cantidad de ${title}`);
+        toast.success(`Se actualizó la cantidad de ${title}`);
       } catch (error) {
         console.log(error);
         const errorQuantity = error.request.response.match(/\d+/)[0];
         console.log(errorQuantity);
-        setPopUp(true);
-        setPopUpMessage(
+        toast.error(
           `Cantidad excedida. Puedes agregar hasta ${errorQuantity} unidad(es) en total`
         );
       }
@@ -111,8 +100,7 @@ export const CartProvider = ({ children }) => {
       const response = await axiosInstance.delete(
         `shopping_cart/line_items/${id}`
       );
-      setPopUpMessage(`${title} fue eliminado del carrito`);
-      setPopUp(true);
+      toast.success(`${title} fue eliminado del carrito`);
       getCart();
     } catch (error) {
       console.log(error);
@@ -139,13 +127,13 @@ export const CartProvider = ({ children }) => {
           },
         },
       });
-      setPopUpMessage(`Compra realizada con éxito`);
-      setPopUp(true);
+      toast.success(`Compra realizada con éxito`);
       setCart([]);
       setCartTotal([]);
       getCart();
     } catch (error) {
       console.log(error);
+      toast.error(error);
     }
   };
 
@@ -164,10 +152,6 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         cartItems,
         cartTotal,
-        popUp,
-        setPopUp,
-        handlePopUp,
-        popUpMessage,
         updateToCart,
         cartCheckout,
       }}

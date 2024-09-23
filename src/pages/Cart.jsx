@@ -1,9 +1,9 @@
-import { faSearch, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
-import { CartContext } from "../context/CartProvider";
-import ItemsCart from "../components/ItemsCart";
 import { filterData } from "../assets/utils";
+import ItemsCart from "../components/ItemsCart";
+import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
   const { cartItems, cartTotal, cartCheckout } = useContext(CartContext);
@@ -44,32 +44,37 @@ const Cart = () => {
           </p>
         </div>
       </form>
-      <div className="flex flex-col flex-wrap sm:flex-row">
-        <button
-          className="px-4 py-2 m-2 bg-slate-800 text-white rounded-md hover:bg-slate-900"
-          onClick={() => handleSort("ascAlpha")}
-        >
-          A-Z
-        </button>
-        <button
-          className="px-4 py-2 m-2 bg-slate-800 text-white rounded-md hover:bg-slate-900"
-          onClick={() => handleSort("desAlpha")}
-        >
-          Z-A
-        </button>
-        <button
-          className="px-4 py-2 m-2 bg-slate-800 text-white rounded-md hover:bg-slate-900"
-          onClick={() => handleSort("desPrice")}
-        >
-          Mayor precio
-        </button>
-        <button
-          className="px-4 py-2 m-2 bg-slate-800 text-white rounded-md hover:bg-slate-900"
-          onClick={() => handleSort("ascPrice")}
-        >
-          Menor precio
-        </button>
+      <div className="flex flex-wrap sm:flex-nowrap">
+        <div className="flex w-full sm:w-auto">
+          <button
+            className="w-1/2 sm:w-32 px-4 py-2 m-2 bg-slate-900 text-white rounded-md hover:bg-slate-950"
+            onClick={() => handleSort("ascAlpha")}
+          >
+            A-Z
+          </button>
+          <button
+            className="w-1/2 sm:w-32 px-4 py-2 m-2 bg-slate-900 text-white rounded-md hover:bg-slate-950"
+            onClick={() => handleSort("desAlpha")}
+          >
+            Z-A
+          </button>
+        </div>
+        <div className="flex w-full sm:w-auto">
+          <button
+            className="w-1/2 sm:w-32 px-4 py-2 m-2 bg-slate-900 text-white rounded-md hover:bg-slate-950"
+            onClick={() => handleSort("desPrice")}
+          >
+            Mayor precio
+          </button>
+          <button
+            className="w-1/2 sm:w-32 px-4 py-2 m-2 bg-slate-900 text-white rounded-md hover:bg-slate-950"
+            onClick={() => handleSort("ascPrice")}
+          >
+            Menor precio
+          </button>
+        </div>
       </div>
+
       {filteredData.map((item) => (
         <ItemsCart
           title={item.product.title}
@@ -87,7 +92,7 @@ const Cart = () => {
           Total : {cartTotal}
         </h2>
         <button
-          className="sm:ml-4 px-4 py-2 bg-slate-800 text-white rounded-md hover:bg-slate-900  flex items-center"
+          className="sm:ml-4 px-4 py-2 bg-slate-900 text-white rounded-md hover:bg-slate-950  flex items-center"
           onClick={cartCheckout}
         >
           Comprar
