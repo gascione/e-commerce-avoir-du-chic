@@ -1,10 +1,9 @@
-import React from "react";
+import { faRefresh, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext } from "react";
+import { CartContext } from "../../context/CartProvider";
 import useQuantity from "../../hooks/useQuantity";
 import Quantity from "../Quantity/Quantity";
-import { CartContext } from "../../context/CartProvider";
-import { faTrash, faRefresh } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext } from "react";
 
 function ItemsCart({
   title,
